@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal BI — Seguimiento Presupuestal · Región Lambayeque</title>
+  <title>Portal de Seguimiento Presupuestal · Región Lambayeque</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,11 +14,6 @@
       --azul:       #1a4b8c;
       --azul-deep:  #0d2147;
       --azul-light: #e6f1fb;
-      --rojo:       #a32d2d;
-      --rojo-light: #fcebeb;
-      --verde:      #0f6e56;
-      --verde-light:#e1f5ee;
-      --oro:        #b8860b;
       --gris-bg:    #f5f7fa;
       --gris-card:  #ffffff;
       --borde:      #dde3ec;
@@ -40,103 +35,69 @@
       flex-direction: column;
     }
 
-    /* ══════════════ HEADER ══════════════ */
+    /* ══ HEADER ══ */
     header {
-      background: var(--gris-card);
-      border-bottom: 1px solid var(--borde-ft);
-      padding: 20px 40px;
+      background: var(--azul-deep);
+      padding: 0 40px;
     }
 
-    .header-inner {
+    .header-top {
       max-width: 1080px;
       margin: 0 auto;
+      padding: 8px 0 6px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,.7);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .header-main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 0;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
     }
 
-    .logos-strip {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .logo-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1.5px solid var(--borde);
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .logo-wrap.mef {
-      border-radius: var(--radius-sm);
-    }
-
-    .logo-divider {
-      width: 1px;
-      height: 44px;
-      background: var(--borde);
-      flex-shrink: 0;
-    }
-
-    .header-text { flex: 1; min-width: 220px; }
-
     .header-text h1 {
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--azul-deep);
-      line-height: 1.25;
-      margin-bottom: 3px;
+      color: #ffffff;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 5px;
     }
 
     .header-text p {
-      font-size: 12px;
-      color: var(--texto-sec);
+      font-size: 11.5px;
+      color: rgba(255,255,255,.65);
       line-height: 1.5;
     }
 
-    .header-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--azul-light);
-      border: 1px solid #b5d4f4;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--azul);
-      padding: 4px 12px;
+    .header-date {
+      text-align: right;
       flex-shrink: 0;
     }
 
-    .dot-vivo {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-      animation: pulse-dot 2s infinite;
+    .header-date .fecha {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
     }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: .4; }
+    .header-date .hora {
+      font-size: 11px;
+      color: rgba(255,255,255,.55);
+      margin-top: 2px;
     }
 
-    /* ══════════════ MAIN ══════════════ */
+    /* ══ MAIN ══ */
     main {
       flex: 1;
       max-width: 1080px;
@@ -151,29 +112,30 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: var(--texto-muted);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    /* ══════════════ GRUPO DE ENTIDAD ══════════════ */
-    .entity-group {
-      margin-bottom: 36px;
-    }
+    /* ══ GRUPO ENTIDAD ══ */
+    .entity-group { margin-bottom: 36px; }
 
     .entity-group-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 14px;
     }
 
     .entity-logo-sm {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       overflow: hidden;
-      border: 1px solid var(--borde);
+      border: 1.5px solid var(--borde);
       background: #fff;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .entity-logo-sm img {
@@ -199,87 +161,87 @@
       background: var(--borde);
     }
 
-    /* ══════════════ GRID DE CARDS ══════════════ */
+    /* ══ GRID ══ */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
 
-    /* ══════════════ CARD ══════════════ */
+    /* ══ CARD ══ */
     .card {
       background: var(--gris-card);
-      border: 1px solid var(--borde);
+      border: 1.5px solid var(--borde);
       border-radius: var(--radius-card);
       overflow: hidden;
       text-decoration: none;
       color: inherit;
       display: flex;
       flex-direction: column;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition: transform .18s ease, box-shadow .18s ease;
       cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 28px rgba(13,33,71,.10);
-      border-color: transparent;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(13,33,71,.12);
     }
 
     .card-accent {
       height: 5px;
+      background: var(--azul);
     }
-
-    .card-accent.azul  { background: var(--azul); }
-    .card-accent.rojo  { background: var(--rojo); }
-    .card-accent.verde { background: var(--verde); }
 
     .card-body {
-      padding: 18px 18px 12px;
+      padding: 22px 20px 14px;
       flex: 1;
-    }
-
-    .card-icon-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
+      text-align: center;
     }
 
-    .card-icon-wrap.azul  { background: var(--azul-light); }
-    .card-icon-wrap.rojo  { background: var(--rojo-light); }
-    .card-icon-wrap.verde { background: var(--verde-light); }
+    .card-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--borde);
+      background: #fff;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
 
-    .card-icon-wrap svg {
-      width: 20px;
-      height: 20px;
+    .card-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-logo.rect {
+      border-radius: var(--radius-sm);
     }
 
     .card-tipo {
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: .07em;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 5px;
+      color: var(--azul);
+      margin-bottom: 6px;
     }
 
-    .card-tipo.azul  { color: var(--azul); }
-    .card-tipo.rojo  { color: var(--rojo); }
-    .card-tipo.verde { color: var(--verde); }
-
     .card-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--azul-deep);
-      line-height: 1.3;
-      margin-bottom: 7px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
     .card-desc {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--texto-sec);
       line-height: 1.6;
     }
@@ -287,8 +249,9 @@
     .card-tags {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 5px;
-      padding: 10px 18px 12px;
+      padding: 10px 16px 12px;
     }
 
     .tag {
@@ -302,41 +265,35 @@
 
     .card-footer {
       border-top: 1px solid var(--borde-ft);
-      padding: 11px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 12px 20px;
+      text-align: center;
       font-size: 12px;
       font-weight: 600;
-      color: var(--texto-sec);
-      transition: background .18s, color .18s;
+      color: var(--azul);
+      transition: background .18s;
     }
 
-    .card:hover .card-footer { color: var(--azul-deep); }
-
-    .card-arrow {
-      font-size: 14px;
-      transition: transform .18s;
+    .card:hover .card-footer {
+      background: var(--azul-light);
     }
 
-    .card:hover .card-arrow { transform: translateX(4px); }
-
-    /* ══════════════ DIVIDER ══════════════ */
+    /* badge próximamente */
     .coming-soon-label {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: #fefce8;
       border: 1px solid #fde047;
       border-radius: var(--radius-pill);
       font-size: 10px;
       font-weight: 600;
       color: #854d0e;
-      padding: 3px 10px;
+      padding: 2px 9px;
       margin-left: 8px;
+      vertical-align: middle;
     }
 
-    /* ══════════════ NOTA MEF ══════════════ */
+    /* nota MEF */
     .nota-mef {
       display: flex;
       align-items: flex-start;
@@ -358,11 +315,7 @@
       border: 1px solid var(--borde);
     }
 
-    .nota-mef-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .nota-mef-logo img { width: 100%; height: 100%; object-fit: cover; }
 
     .nota-mef-text {
       font-size: 11.5px;
@@ -380,70 +333,45 @@
 
     .nota-mef-text a:hover { text-decoration: underline; }
 
-    /* ══════════════ FOOTER ══════════════ */
-    footer {
-      background: var(--gris-card);
-      border-top: 1px solid var(--borde-ft);
-      padding: 14px 40px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--texto-muted);
-    }
-
-    footer strong { color: var(--azul); }
-
-    /* ══════════════ RESPONSIVE ══════════════ */
+    /* responsive */
     @media (max-width: 640px) {
-      header  { padding: 16px 20px; }
+      header  { padding: 0 20px; }
       main    { padding: 24px 20px 36px; }
-      footer  { padding: 12px 20px; }
       .header-text h1 { font-size: 15px; }
       .cards-grid { grid-template-columns: 1fr; }
+      .header-date { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
 <header>
-  <div class="header-inner">
-
-    <div class="logos-strip">
-      <div class="logo-wrap">
-        <img src="img/gore.png" alt="Escudo Gobierno Regional de Lambayeque">
-      </div>
-      <div class="logo-wrap">
-        <img src="img/mpl.png" alt="Escudo Municipalidad Provincial de Lambayeque">
-      </div>
-      <div class="logo-divider"></div>
-      <div class="logo-wrap mef">
-        <img src="img/mef.jpg" alt="Logo MEF">
-      </div>
-    </div>
-
+  <div class="header-top">MG. C.P.C. Luis Martín Espinoza Suárez</div>
+  <div class="header-main">
     <div class="header-text">
       <h1>Portal de Seguimiento Presupuestal</h1>
-      <p>ORPMI · Gobierno Regional de Lambayeque &nbsp;|&nbsp; Municipalidad Provincial de Lambayeque</p>
+      <p>
+        Gobierno Regional de Lambayeque &nbsp;|&nbsp;
+        Municipalidad Provincial de Lambayeque &nbsp;|&nbsp;
+        Municipalidad Provincial de Chiclayo
+      </p>
     </div>
-
-    <div class="header-badge">
-      <span class="dot-vivo"></span>
-      En vivo · Gestión 2026
+    <div class="header-date">
+      <div class="fecha" id="fecha-hoy"></div>
+      <div class="hora" id="hora-hoy"></div>
     </div>
-
   </div>
 </header>
 
-<!-- ══ MAIN ══ -->
 <main>
 
   <p class="section-eyebrow">Selecciona el dashboard a consultar</p>
 
-  <!-- ── GRUPO: GORE LAMBAYEQUE ── -->
+  <!-- GORE LAMBAYEQUE -->
   <div class="entity-group">
     <div class="entity-group-header">
       <div class="entity-logo-sm">
-        <img src="img/gore.png" alt="GORE Lambayeque">
+        <img src="img/gore.jpg" alt="GORE Lambayeque">
       </div>
       <div>
         <div class="entity-name">Gobierno Regional de Lambayeque</div>
@@ -454,14 +382,12 @@
 
     <div class="cards-grid">
       <a class="card" href="https://jdrq.github.io/orad-dashboard/" target="_blank" rel="noopener">
-        <div class="card-accent azul"></div>
+        <div class="card-accent"></div>
         <div class="card-body">
-          <div class="card-icon-wrap azul">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1a4b8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-6"/>
-            </svg>
+          <div class="card-logo">
+            <img src="img/gore.png" alt="GORE Lambayeque">
           </div>
-          <div class="card-tipo azul">Inversiones · ORAD</div>
+          <div class="card-tipo">Inversiones · ORAD</div>
           <div class="card-title">Ejecución Presupuestal de Inversiones</div>
           <div class="card-desc">KPIs financieros del Pliego, ranking nacional de los 26 GOREs, ejecución por Unidad Ejecutora, Rubro y Función. Comparativo histórico 2022–2026.</div>
         </div>
@@ -471,15 +397,12 @@
           <span class="tag">Histórico</span>
           <span class="tag">UE</span>
         </div>
-        <div class="card-footer">
-          Abrir dashboard
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="card-footer">Abrir dashboard</div>
       </a>
     </div>
   </div>
 
-  <!-- ── GRUPO: MUNICIPALIDAD PROVINCIAL DE LAMBAYEQUE ── -->
+  <!-- MPL -->
   <div class="entity-group">
     <div class="entity-group-header">
       <div class="entity-logo-sm">
@@ -495,14 +418,12 @@
     <div class="cards-grid">
 
       <a class="card" href="https://jdrq.github.io/mpl-egresos/" target="_blank" rel="noopener">
-        <div class="card-accent rojo"></div>
+        <div class="card-accent"></div>
         <div class="card-body">
-          <div class="card-icon-wrap rojo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#a32d2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
+          <div class="card-logo">
+            <img src="img/mpl.png" alt="MPL">
           </div>
-          <div class="card-tipo rojo">Egresos · Gasto</div>
+          <div class="card-tipo">Egresos · Gasto</div>
           <div class="card-title">Ejecución del Gasto Municipal</div>
           <div class="card-desc">Seguimiento de certificaciones, compromisos y devengado. Desglose por genérica de gasto, función y proyectos de inversión.</div>
         </div>
@@ -512,21 +433,16 @@
           <span class="tag">Devengado</span>
           <span class="tag">Proyectos</span>
         </div>
-        <div class="card-footer">
-          Abrir dashboard
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="card-footer">Abrir dashboard</div>
       </a>
 
       <a class="card" href="https://jdrq.github.io/mpl-ingresos/" target="_blank" rel="noopener">
-        <div class="card-accent verde"></div>
+        <div class="card-accent"></div>
         <div class="card-body">
-          <div class="card-icon-wrap verde">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
-            </svg>
+          <div class="card-logo">
+            <img src="img/mpl.png" alt="MPL">
           </div>
-          <div class="card-tipo verde">Ingresos · Recaudación</div>
+          <div class="card-tipo">Ingresos · Recaudación</div>
           <div class="card-title">Recaudación Municipal</div>
           <div class="card-desc">Monitoreo de ingresos por rubro y fuente de financiamiento. Tendencias de captación, metas y avance por período.</div>
         </div>
@@ -536,25 +452,22 @@
           <span class="tag">Tendencias</span>
           <span class="tag">Metas</span>
         </div>
-        <div class="card-footer">
-          Abrir dashboard
-          <span class="card-arrow">→</span>
-        </div>
+        <div class="card-footer">Abrir dashboard</div>
       </a>
 
     </div>
   </div>
 
-  <!-- ── GRUPO: MUNICIPALIDAD PROVINCIAL DE CHICLAYO (próximamente) ── -->
+  <!-- CHICLAYO -->
   <div class="entity-group">
     <div class="entity-group-header">
-      <div class="entity-logo-sm" style="background:#f1f5f9; border-style: dashed;">
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;margin:auto;display:block;">
+      <div class="entity-logo-sm" style="background:#f1f5f9; border-style:dashed;">
+        <svg viewBox="0 0 32 32" fill="none" style="width:18px;height:18px;">
           <circle cx="16" cy="16" r="10" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
         </svg>
       </div>
       <div>
-        <div class="entity-name" style="color: var(--texto-sec);">
+        <div class="entity-name" style="color:var(--texto-sec);">
           Municipalidad Provincial de Chiclayo
           <span class="coming-soon-label">⏳ Próximamente</span>
         </div>
@@ -565,66 +478,67 @@
 
     <div class="cards-grid">
 
-      <div class="card" style="opacity:.55; pointer-events:none;">
-        <div class="card-accent rojo"></div>
+      <div class="card" style="opacity:.5; pointer-events:none;">
+        <div class="card-accent"></div>
         <div class="card-body">
-          <div class="card-icon-wrap rojo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#a32d2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 5v14M5 12l7 7 7-7"/>
+          <div class="card-logo" style="background:#f1f5f9;">
+            <svg viewBox="0 0 90 90" fill="none" style="width:50px;height:50px;">
+              <circle cx="45" cy="45" r="30" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 4"/>
             </svg>
           </div>
-          <div class="card-tipo rojo">Egresos · Gasto</div>
+          <div class="card-tipo">Egresos · Gasto</div>
           <div class="card-title">Ejecución del Gasto Municipal</div>
-          <div class="card-desc">Dashboard en construcción. Incluirá seguimiento de certificaciones, compromisos y devengado de la Municipalidad Provincial de Chiclayo.</div>
+          <div class="card-desc">Dashboard en construcción. Incluirá seguimiento de certificaciones, compromisos y devengado.</div>
         </div>
-        <div class="card-footer" style="color:var(--texto-muted);">
-          En construcción
-          <span>🔒</span>
-        </div>
+        <div class="card-footer" style="color:var(--texto-muted);">En construcción 🔒</div>
       </div>
 
-      <div class="card" style="opacity:.55; pointer-events:none;">
-        <div class="card-accent verde"></div>
+      <div class="card" style="opacity:.5; pointer-events:none;">
+        <div class="card-accent"></div>
         <div class="card-body">
-          <div class="card-icon-wrap verde">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19V5M5 12l7-7 7 7"/>
+          <div class="card-logo" style="background:#f1f5f9;">
+            <svg viewBox="0 0 90 90" fill="none" style="width:50px;height:50px;">
+              <circle cx="45" cy="45" r="30" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 4"/>
             </svg>
           </div>
-          <div class="card-tipo verde">Ingresos · Recaudación</div>
+          <div class="card-tipo">Ingresos · Recaudación</div>
           <div class="card-title">Recaudación Municipal</div>
-          <div class="card-desc">Dashboard en construcción. Incluirá monitoreo de ingresos por rubro y fuente de financiamiento de la Municipalidad Provincial de Chiclayo.</div>
+          <div class="card-desc">Dashboard en construcción. Incluirá monitoreo de ingresos por rubro y fuente de financiamiento.</div>
         </div>
-        <div class="card-footer" style="color:var(--texto-muted);">
-          En construcción
-          <span>🔒</span>
-        </div>
+        <div class="card-footer" style="color:var(--texto-muted);">En construcción 🔒</div>
       </div>
 
     </div>
   </div>
 
-  <!-- ── NOTA FUENTE ── -->
+  <!-- NOTA MEF -->
   <div class="nota-mef">
     <div class="nota-mef-logo">
       <img src="img/mef.jpg" alt="MEF">
     </div>
     <div class="nota-mef-text">
       <strong>Fuente de datos:</strong> Consulta Amigable del Ministerio de Economía y Finanzas —
-      <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">
-        apps5.mineco.gob.pe
-      </a>.
+      <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">apps5.mineco.gob.pe</a>.
       Los dashboards se actualizan periódicamente con datos del SIAF. La información corresponde al período enero–julio 2026, salvo indicación contraria en cada dashboard.
     </div>
   </div>
 
 </main>
 
-<!-- ══ FOOTER ══ -->
-<footer>
-  Elaborado por <strong>ORPMI</strong> — Oficina Regional de Programación Multianual de Inversiones ·
-  Gobierno Regional de Lambayeque · Plataforma BI 2026
-</footer>
+<script>
+  function actualizarFechaHora() {
+    const ahora = new Date();
+    const opcFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const opcHora  = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const fecha = ahora.toLocaleDateString('es-PE', opcFecha);
+    const hora  = ahora.toLocaleTimeString('es-PE', opcHora);
+    document.getElementById('fecha-hoy').textContent =
+      fecha.charAt(0).toUpperCase() + fecha.slice(1);
+    document.getElementById('hora-hoy').textContent = hora + ' hrs';
+  }
+  actualizarFechaHora();
+  setInterval(actualizarFechaHora, 1000);
+</script>
 
 </body>
 </html>
