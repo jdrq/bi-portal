@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal BI — Seguimiento Presupuestal · Región Lambayeque</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --azul:       #1a4b8c;
+      --azul-deep:  #0d2147;
+      --azul-light: #e6f1fb;
+      --rojo:       #a32d2d;
+      --rojo-light: #fcebeb;
+      --verde:      #0f6e56;
+      --verde-light:#e1f5ee;
+      --oro:        #b8860b;
+      --gris-bg:    #f5f7fa;
+      --gris-card:  #ffffff;
+      --borde:      #dde3ec;
+      --borde-ft:   #e8edf4;
+      --texto:      #0d2147;
+      --texto-sec:  #64748b;
+      --texto-muted:#94a3b8;
+      --radius-card:14px;
+      --radius-sm:  8px;
+      --radius-pill:20px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--gris-bg);
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ══════════════ HEADER ══════════════ */
+    header {
+      background: var(--gris-card);
+      border-bottom: 1px solid var(--borde-ft);
+      padding: 20px 40px;
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logos-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid var(--borde);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-wrap.mef {
+      border-radius: var(--radius-sm);
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 44px;
+      background: var(--borde);
+      flex-shrink: 0;
+    }
+
+    .header-text { flex: 1; min-width: 220px; }
+
+    .header-text h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .header-text p {
+      font-size: 12px;
+      color: var(--texto-sec);
+      line-height: 1.5;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--azul-light);
+      border: 1px solid #b5d4f4;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--azul);
+      padding: 4px 12px;
+      flex-shrink: 0;
+    }
+
+    .dot-vivo {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .4; }
+    }
+
+    /* ══════════════ MAIN ══════════════ */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 40px 48px;
+      width: 100%;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--texto-muted);
+      margin-bottom: 18px;
+    }
+
+    /* ══════════════ GRUPO DE ENTIDAD ══════════════ */
+    .entity-group {
+      margin-bottom: 36px;
+    }
+
+    .entity-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .entity-logo-sm {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--borde);
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .entity-logo-sm img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .entity-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--azul-deep);
+    }
+
+    .entity-sub {
+      font-size: 11px;
+      color: var(--texto-sec);
+    }
+
+    .entity-line {
+      flex: 1;
+      height: 1px;
+      background: var(--borde);
+    }
+
+    /* ══════════════ GRID DE CARDS ══════════════ */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    /* ══════════════ CARD ══════════════ */
+    .card {
+      background: var(--gris-card);
+      border: 1px solid var(--borde);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(13,33,71,.10);
+      border-color: transparent;
+    }
+
+    .card-accent {
+      height: 5px;
+    }
+
+    .card-accent.azul  { background: var(--azul); }
+    .card-accent.rojo  { background: var(--rojo); }
+    .card-accent.verde { background: var(--verde); }
+
+    .card-body {
+      padding: 18px 18px 12px;
+      flex: 1;
+    }
+
+    .card-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .card-icon-wrap.azul  { background: var(--azul-light); }
+    .card-icon-wrap.rojo  { background: var(--rojo-light); }
+    .card-icon-wrap.verde { background: var(--verde-light); }
+
+    .card-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .card-tipo {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .card-tipo.azul  { color: var(--azul); }
+    .card-tipo.rojo  { color: var(--rojo); }
+    .card-tipo.verde { color: var(--verde); }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul-deep);
+      line-height: 1.3;
+      margin-bottom: 7px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--texto-sec);
+      line-height: 1.6;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 10px 18px 12px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--borde);
+      color: var(--texto-sec);
+      background: var(--gris-bg);
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--borde-ft);
+      padding: 11px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--texto-sec);
+      transition: background .18s, color .18s;
+    }
+
+    .card:hover .card-footer { color: var(--azul-deep); }
+
+    .card-arrow {
+      font-size: 14px;
+      transition: transform .18s;
+    }
+
+    .card:hover .card-arrow { transform: translateX(4px); }
+
+    /* ══════════════ DIVIDER ══════════════ */
+    .coming-soon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fefce8;
+      border: 1px solid #fde047;
+      border-radius: var(--radius-pill);
+      font-size: 10px;
+      font-weight: 600;
+      color: #854d0e;
+      padding: 3px 10px;
+      margin-left: 8px;
+    }
+
+    /* ══════════════ NOTA MEF ══════════════ */
+    .nota-mef {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--gris-card);
+      border: 1px solid var(--borde);
+      border-left: 4px solid var(--azul);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      margin-top: 8px;
+    }
+
+    .nota-mef-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--borde);
+    }
+
+    .nota-mef-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nota-mef-text {
+      font-size: 11.5px;
+      color: var(--texto-sec);
+      line-height: 1.6;
+    }
+
+    .nota-mef-text strong { color: var(--texto); }
+
+    .nota-mef-text a {
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nota-mef-text a:hover { text-decoration: underline; }
+
+    /* ══════════════ FOOTER ══════════════ */
+    footer {
+      background: var(--gris-card);
+      border-top: 1px solid var(--borde-ft);
+      padding: 14px 40px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--texto-muted);
+    }
+
+    footer strong { color: var(--azul); }
+
+    /* ══════════════ RESPONSIVE ══════════════ */
+    @media (max-width: 640px) {
+      header  { padding: 16px 20px; }
+      main    { padding: 24px 20px 36px; }
+      footer  { padding: 12px 20px; }
+      .header-text h1 { font-size: 15px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+
+    <div class="logos-strip">
+      <div class="logo-wrap">
+        <img src="img/gore.png" alt="Escudo Gobierno Regional de Lambayeque">
+      </div>
+      <div class="logo-wrap">
+        <img src="img/mpl.png" alt="Escudo Municipalidad Provincial de Lambayeque">
+      </div>
+      <div class="logo-divider"></div>
+      <div class="logo-wrap mef">
+        <img src="img/mef.jpg" alt="Logo MEF">
+      </div>
+    </div>
+
+    <div class="header-text">
+      <h1>Portal de Seguimiento Presupuestal</h1>
+      <p>ORPMI · Gobierno Regional de Lambayeque &nbsp;|&nbsp; Municipalidad Provincial de Lambayeque</p>
+    </div>
+
+    <div class="header-badge">
+      <span class="dot-vivo"></span>
+      En vivo · Gestión 2026
+    </div>
+
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main>
+
+  <p class="section-eyebrow">Selecciona el dashboard a consultar</p>
+
+  <!-- ── GRUPO: GORE LAMBAYEQUE ── -->
+  <div class="entity-group">
+    <div class="entity-group-header">
+      <div class="entity-logo-sm">
+        <img src="img/gore.png" alt="GORE Lambayeque">
+      </div>
+      <div>
+        <div class="entity-name">Gobierno Regional de Lambayeque</div>
+        <div class="entity-sub">Pliego 452</div>
+      </div>
+      <div class="entity-line"></div>
+    </div>
+
+    <div class="cards-grid">
+      <a class="card" href="https://jdrq.github.io/orad-dashboard/" target="_blank" rel="noopener">
+        <div class="card-accent azul"></div>
+        <div class="card-body">
+          <div class="card-icon-wrap azul">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a4b8c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-6"/>
+            </svg>
+          </div>
+          <div class="card-tipo azul">Inversiones · ORAD</div>
+          <div class="card-title">Ejecución Presupuestal de Inversiones</div>
+          <div class="card-desc">KPIs financieros del Pliego, ranking nacional de los 26 GOREs, ejecución por Unidad Ejecutora, Rubro y Función. Comparativo histórico 2022–2026.</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag">PIM · Devengado</span>
+          <span class="tag">Ranking Nacional</span>
+          <span class="tag">Histórico</span>
+          <span class="tag">UE</span>
+        </div>
+        <div class="card-footer">
+          Abrir dashboard
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── GRUPO: MUNICIPALIDAD PROVINCIAL DE LAMBAYEQUE ── -->
+  <div class="entity-group">
+    <div class="entity-group-header">
+      <div class="entity-logo-sm">
+        <img src="img/mpl.png" alt="MPL">
+      </div>
+      <div>
+        <div class="entity-name">Municipalidad Provincial de Lambayeque</div>
+        <div class="entity-sub">Presupuesto Municipal</div>
+      </div>
+      <div class="entity-line"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <a class="card" href="https://jdrq.github.io/mpl-egresos/" target="_blank" rel="noopener">
+        <div class="card-accent rojo"></div>
+        <div class="card-body">
+          <div class="card-icon-wrap rojo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#a32d2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+          </div>
+          <div class="card-tipo rojo">Egresos · Gasto</div>
+          <div class="card-title">Ejecución del Gasto Municipal</div>
+          <div class="card-desc">Seguimiento de certificaciones, compromisos y devengado. Desglose por genérica de gasto, función y proyectos de inversión.</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Certificación</span>
+          <span class="tag">Compromiso</span>
+          <span class="tag">Devengado</span>
+          <span class="tag">Proyectos</span>
+        </div>
+        <div class="card-footer">
+          Abrir dashboard
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="card" href="https://jdrq.github.io/mpl-ingresos/" target="_blank" rel="noopener">
+        <div class="card-accent verde"></div>
+        <div class="card-body">
+          <div class="card-icon-wrap verde">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+          </div>
+          <div class="card-tipo verde">Ingresos · Recaudación</div>
+          <div class="card-title">Recaudación Municipal</div>
+          <div class="card-desc">Monitoreo de ingresos por rubro y fuente de financiamiento. Tendencias de captación, metas y avance por período.</div>
+        </div>
+        <div class="card-tags">
+          <span class="tag">Recaudación</span>
+          <span class="tag">Fuente Financ.</span>
+          <span class="tag">Tendencias</span>
+          <span class="tag">Metas</span>
+        </div>
+        <div class="card-footer">
+          Abrir dashboard
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── GRUPO: MUNICIPALIDAD PROVINCIAL DE CHICLAYO (próximamente) ── -->
+  <div class="entity-group">
+    <div class="entity-group-header">
+      <div class="entity-logo-sm" style="background:#f1f5f9; border-style: dashed;">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;margin:auto;display:block;">
+          <circle cx="16" cy="16" r="10" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+        </svg>
+      </div>
+      <div>
+        <div class="entity-name" style="color: var(--texto-sec);">
+          Municipalidad Provincial de Chiclayo
+          <span class="coming-soon-label">⏳ Próximamente</span>
+        </div>
+        <div class="entity-sub">Presupuesto Municipal</div>
+      </div>
+      <div class="entity-line"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="card" style="opacity:.55; pointer-events:none;">
+        <div class="card-accent rojo"></div>
+        <div class="card-body">
+          <div class="card-icon-wrap rojo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#a32d2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+          </div>
+          <div class="card-tipo rojo">Egresos · Gasto</div>
+          <div class="card-title">Ejecución del Gasto Municipal</div>
+          <div class="card-desc">Dashboard en construcción. Incluirá seguimiento de certificaciones, compromisos y devengado de la Municipalidad Provincial de Chiclayo.</div>
+        </div>
+        <div class="card-footer" style="color:var(--texto-muted);">
+          En construcción
+          <span>🔒</span>
+        </div>
+      </div>
+
+      <div class="card" style="opacity:.55; pointer-events:none;">
+        <div class="card-accent verde"></div>
+        <div class="card-body">
+          <div class="card-icon-wrap verde">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0f6e56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+          </div>
+          <div class="card-tipo verde">Ingresos · Recaudación</div>
+          <div class="card-title">Recaudación Municipal</div>
+          <div class="card-desc">Dashboard en construcción. Incluirá monitoreo de ingresos por rubro y fuente de financiamiento de la Municipalidad Provincial de Chiclayo.</div>
+        </div>
+        <div class="card-footer" style="color:var(--texto-muted);">
+          En construcción
+          <span>🔒</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── NOTA FUENTE ── -->
+  <div class="nota-mef">
+    <div class="nota-mef-logo">
+      <img src="img/mef.jpg" alt="MEF">
+    </div>
+    <div class="nota-mef-text">
+      <strong>Fuente de datos:</strong> Consulta Amigable del Ministerio de Economía y Finanzas —
+      <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">
+        apps5.mineco.gob.pe
+      </a>.
+      Los dashboards se actualizan periódicamente con datos del SIAF. La información corresponde al período enero–julio 2026, salvo indicación contraria en cada dashboard.
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  Elaborado por <strong>ORPMI</strong> — Oficina Regional de Programación Multianual de Inversiones ·
+  Gobierno Regional de Lambayeque · Plataforma BI 2026
+</footer>
+
+</body>
+</html>
