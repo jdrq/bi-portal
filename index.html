@@ -620,6 +620,7 @@
       <strong>Fuente de datos:</strong> Consulta Amigable del Ministerio de Economía y Finanzas —
       <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">apps5.mineco.gob.pe</a>.
       Los dashboards se actualizan periódicamente con datos del SIAF.
+      La información corresponde al período enero–julio 2026, salvo indicación contraria en cada dashboard.
     </div>
   </div>
 </footer>
@@ -634,19 +635,19 @@
 
   /* ── FADE CAROUSEL ── */
   (function() {
-    const TOTAL     = 3;
-    const INTERVAL  = 5000;   // ms entre slides
-    const DURATION  = INTERVAL;
+    const TOTAL    = 3;
+    const INTERVAL = 5000;   // ms entre slides
 
-    let current   = 0;
-    let timer     = null;
-    let progTimer = null;
+    let current  = 0;
+    let timer    = null;
+    let isPaused = false;
 
-    const slides   = document.querySelectorAll('.slide');
-    const dots     = document.querySelectorAll('.dot');
-    const bar      = document.getElementById('progress-bar');
-    const btnPrev  = document.getElementById('btn-prev');
-    const btnNext  = document.getElementById('btn-next');
+    const slides  = document.querySelectorAll('.slide');
+    const dots    = document.querySelectorAll('.dot');
+    const bar     = document.getElementById('progress-bar');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const carousel = document.getElementById('carousel');
 
     function goTo(index) {
       slides[current].classList.remove('active');
@@ -665,37 +666,48 @@
 
     function startAuto() {
       clearInterval(timer);
-      timer = setInterval(next, INTERVAL);
+      timer = setInterval(() => {
+        if (!isPaused) next();
+      }, INTERVAL);
     }
 
     function resetProgress() {
-      clearTimeout(progTimer);
       bar.style.transition = 'none';
       bar.style.width = '0%';
       // forzar reflow para que la transición reinicie
       void bar.offsetWidth;
-      bar.style.transition = `width ${DURATION}ms linear`;
+      bar.style.transition = `width ${INTERVAL}ms linear`;
       bar.style.width = '100%';
     }
 
-    btnNext.addEventListener('click', () => { next(); startAuto(); });
-    btnPrev.addEventListener('click', () => { prev(); startAuto(); });
+    function restart() {
+      resetProgress();
+      startAuto();
+    }
+
+    btnNext.addEventListener('click', () => { next(); restart(); });
+    btnPrev.addEventListener('click', () => { prev(); restart(); });
 
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
-        goTo(parseInt(dot.dataset.index));
-        startAuto();
+        goTo(parseInt(dot.dataset.index, 10));
+        restart();
       });
     });
 
-    // pausa al hover
-    const carousel = document.getElementById('carousel');
-    carousel.addEventListener('mouseenter', () => clearInterval(timer));
-    carousel.addEventListener('mouseleave', () => startAuto());
+    // pausa al hover (sin detener el intervalo, solo la lógica de avance)
+    carousel.addEventListener('mouseenter', () => {
+      isPaused = true;
+      bar.style.transition = 'none';
+      bar.style.width = getComputedStyle(bar).width;
+    });
+    carousel.addEventListener('mouseleave', () => {
+      isPaused = false;
+      restart();
+    });
 
-    // arranque
-    resetProgress();
-    startAuto();
+    // arranque inicial
+    restart();
   })();
 </script>
 
