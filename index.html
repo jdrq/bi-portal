@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Seguimiento Presupuestal · Región Lambayeque</title>
+  <title>Portal de Seguimiento Presupuestal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +40,6 @@
       background: var(--azul-deep);
       padding: 0 40px;
     }
-
     .header-top {
       max-width: 1080px;
       margin: 0 auto;
@@ -52,7 +51,6 @@
       letter-spacing: .04em;
       text-transform: uppercase;
     }
-
     .header-main {
       max-width: 1080px;
       margin: 0 auto;
@@ -63,7 +61,6 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     .header-text h1 {
       font-size: 20px;
       font-weight: 700;
@@ -73,28 +70,165 @@
       line-height: 1.2;
       margin-bottom: 5px;
     }
-
     .header-text p {
       font-size: 11.5px;
       color: rgba(255,255,255,.65);
       line-height: 1.5;
     }
-
-    .header-date {
-      text-align: right;
-      flex-shrink: 0;
-    }
-
+    .header-date { text-align: right; flex-shrink: 0; }
     .header-date .fecha {
       font-size: 13px;
       font-weight: 700;
       color: #ffffff;
     }
 
-    .header-date .hora {
-      font-size: 11px;
-      color: rgba(255,255,255,.55);
-      margin-top: 2px;
+    /* ══ HERO CAROUSEL ══ */
+    .hero-carousel {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      background: #0d2147;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+
+    /* overlay oscuro degradado */
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(13,33,71,.78) 0%,
+        rgba(13,33,71,.45) 50%,
+        rgba(13,33,71,.15) 100%
+      );
+    }
+
+    /* texto sobre el slide */
+    .slide-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px;
+      max-width: 580px;
+    }
+
+    .slide-tag {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: var(--radius-pill);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.9);
+      padding: 4px 14px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .slide-title {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      text-shadow: 0 2px 12px rgba(0,0,0,.35);
+    }
+
+    .slide-subtitle {
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,.72);
+      line-height: 1.55;
+      max-width: 420px;
+    }
+
+    /* controles — puntos */
+    .carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.4);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background .3s, transform .3s;
+    }
+
+    .dot.active {
+      background: #ffffff;
+      transform: scale(1.25);
+    }
+
+    /* flechas */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background .2s;
+      user-select: none;
+    }
+    .carousel-btn:hover { background: rgba(255,255,255,.28); }
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
+
+    /* barra de progreso */
+    .carousel-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: rgba(255,255,255,.85);
+      width: 0%;
+      transition: width linear;
+      z-index: 10;
     }
 
     /* ══ MAIN ══ */
@@ -137,29 +271,11 @@
       align-items: center;
       justify-content: center;
     }
+    .entity-logo-sm img { width: 100%; height: 100%; object-fit: cover; }
 
-    .entity-logo-sm img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .entity-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--azul-deep);
-    }
-
-    .entity-sub {
-      font-size: 11px;
-      color: var(--texto-sec);
-    }
-
-    .entity-line {
-      flex: 1;
-      height: 1px;
-      background: var(--borde);
-    }
+    .entity-name { font-size: 13px; font-weight: 700; color: var(--azul-deep); }
+    .entity-sub  { font-size: 11px; color: var(--texto-sec); }
+    .entity-line { flex: 1; height: 1px; background: var(--borde); }
 
     /* ══ GRID ══ */
     .cards-grid {
@@ -181,16 +297,11 @@
       transition: transform .18s ease, box-shadow .18s ease;
       cursor: pointer;
     }
-
     .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(13,33,71,.12);
     }
-
-    .card-accent {
-      height: 5px;
-      background: var(--azul);
-    }
+    .card-accent { height: 5px; background: var(--azul); }
 
     .card-body {
       padding: 22px 20px 14px;
@@ -211,16 +322,7 @@
       margin-bottom: 16px;
       flex-shrink: 0;
     }
-
-    .card-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .card-logo.rect {
-      border-radius: var(--radius-sm);
-    }
+    .card-logo img { width: 100%; height: 100%; object-fit: cover; }
 
     .card-tipo {
       font-size: 10px;
@@ -246,24 +348,7 @@
       line-height: 1.6;
     }
 
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 5px;
-      padding: 10px 16px 12px;
-    }
-
-    .tag {
-      font-size: 10px;
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--borde);
-      color: var(--texto-sec);
-      background: var(--gris-bg);
-    }
-
-    .card-footer {
+    .card-footer-btn {
       border-top: 1px solid var(--borde-ft);
       padding: 12px 20px;
       text-align: center;
@@ -272,12 +357,8 @@
       color: var(--azul);
       transition: background .18s;
     }
+    .card:hover .card-footer-btn { background: var(--azul-light); }
 
-    .card:hover .card-footer {
-      background: var(--azul-light);
-    }
-
-    /* badge próximamente */
     .coming-soon-label {
       display: inline-flex;
       align-items: center;
@@ -293,58 +374,62 @@
       vertical-align: middle;
     }
 
-    /* nota MEF */
-    .nota-mef {
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--gris-card);
+      border-top: 1px solid var(--borde);
+      padding: 18px 40px;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      background: var(--gris-card);
-      border: 1px solid var(--borde);
-      border-left: 4px solid var(--azul);
-      border-radius: var(--radius-sm);
-      padding: 14px 18px;
-      margin-top: 8px;
+      gap: 14px;
     }
-
-    .nota-mef-logo {
-      width: 36px;
-      height: 36px;
+    .footer-mef-logo {
+      width: 38px;
+      height: 38px;
       border-radius: 6px;
       overflow: hidden;
       flex-shrink: 0;
       border: 1px solid var(--borde);
     }
+    .footer-mef-logo img { width: 100%; height: 100%; object-fit: cover; }
 
-    .nota-mef-logo img { width: 100%; height: 100%; object-fit: cover; }
-
-    .nota-mef-text {
+    .footer-divider {
+      width: 1px;
+      background: var(--borde);
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+    .footer-text {
       font-size: 11.5px;
       color: var(--texto-sec);
-      line-height: 1.6;
+      line-height: 1.65;
     }
+    .footer-text strong { color: var(--texto); }
+    .footer-text a { color: var(--azul); text-decoration: none; font-weight: 600; }
+    .footer-text a:hover { text-decoration: underline; }
 
-    .nota-mef-text strong { color: var(--texto); }
-
-    .nota-mef-text a {
-      color: var(--azul);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .nota-mef-text a:hover { text-decoration: underline; }
-
-    /* responsive */
+    /* ══ RESPONSIVE ══ */
     @media (max-width: 640px) {
       header  { padding: 0 20px; }
       main    { padding: 24px 20px 36px; }
+      footer  { padding: 16px 20px; }
       .header-text h1 { font-size: 15px; }
       .cards-grid { grid-template-columns: 1fr; }
       .header-date { display: none; }
+      .hero-carousel { height: 240px; }
+      .slide-content { padding: 0 32px; }
+      .slide-title { font-size: 18px; }
+      .carousel-btn { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- ══ HEADER ══ -->
 <header>
   <div class="header-top">MG. C.P.C. Luis Martín Espinoza Suárez</div>
   <div class="header-main">
@@ -358,11 +443,62 @@
     </div>
     <div class="header-date">
       <div class="fecha" id="fecha-hoy"></div>
-      <div class="hora" id="hora-hoy"></div>
     </div>
   </div>
 </header>
 
+<!-- ══ HERO CAROUSEL FADE SLIDER ══ -->
+<div class="hero-carousel" id="carousel">
+
+  <!-- Slide 1 — GORE -->
+  <div class="slide active" id="slide-0">
+    <img class="slide-img" src="img/goresede1.jpg" alt="Sede Gobierno Regional de Lambayeque">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Sede institucional</span>
+      <h2 class="slide-title">Gobierno Regional de Lambayeque</h2>
+      <p class="slide-subtitle">Pliego 452 · Seguimiento de inversiones públicas y ejecución presupuestal regional.</p>
+    </div>
+  </div>
+
+  <!-- Slide 2 — MPL -->
+  <div class="slide" id="slide-1">
+    <img class="slide-img" src="img/mplsede.jpg" alt="Sede Municipalidad Provincial de Lambayeque">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Sede institucional</span>
+      <h2 class="slide-title">Municipalidad Provincial de Lambayeque</h2>
+      <p class="slide-subtitle">Seguimiento del gasto municipal e ingresos por recaudación de la provincia de Lambayeque.</p>
+    </div>
+  </div>
+
+  <!-- Slide 3 — MPC -->
+  <div class="slide" id="slide-2">
+    <img class="slide-img" src="img/mpcsede.jpg" alt="Sede Municipalidad Provincial de Chiclayo">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <span class="slide-tag">Sede institucional</span>
+      <h2 class="slide-title">Municipalidad Provincial de Chiclayo</h2>
+      <p class="slide-subtitle">Dashboard en desarrollo. Próximamente disponible el seguimiento presupuestal de la provincia de Chiclayo.</p>
+    </div>
+  </div>
+
+  <!-- Flechas -->
+  <button class="carousel-btn prev" id="btn-prev" aria-label="Anterior">&#8592;</button>
+  <button class="carousel-btn next" id="btn-next" aria-label="Siguiente">&#8594;</button>
+
+  <!-- Dots -->
+  <div class="carousel-dots">
+    <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="dot"        data-index="1" aria-label="Slide 2"></button>
+    <button class="dot"        data-index="2" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Barra de progreso -->
+  <div class="carousel-progress" id="progress-bar"></div>
+</div>
+
+<!-- ══ MAIN ══ -->
 <main>
 
   <p class="section-eyebrow">Selecciona el dashboard a consultar</p>
@@ -374,30 +510,21 @@
         <img src="img/gore.jpg" alt="GORE Lambayeque">
       </div>
       <div>
-        <div class="entity-name">Gobierno Regional de Lambayeque</div>
-        <div class="entity-sub">Pliego 452</div>
+        <div class="entity-name">GOBIERNO REGIONAL DE LAMBAYEQUE</div>
       </div>
       <div class="entity-line"></div>
     </div>
-
     <div class="cards-grid">
       <a class="card" href="https://jdrq.github.io/orad-dashboard/" target="_blank" rel="noopener">
         <div class="card-accent"></div>
         <div class="card-body">
           <div class="card-logo">
-            <img src="img/gore.png" alt="GORE Lambayeque">
+            <img src="img/gore.jpg" alt="GORE Lambayeque">
           </div>
-          <div class="card-tipo">Inversiones · ORAD</div>
+          <div class="card-tipo">Inversiones · Proyectos</div>
           <div class="card-title">Ejecución Presupuestal de Inversiones</div>
-          <div class="card-desc">KPIs financieros del Pliego, ranking nacional de los 26 GOREs, ejecución por Unidad Ejecutora, Rubro y Función. Comparativo histórico 2022–2026.</div>
         </div>
-        <div class="card-tags">
-          <span class="tag">PIM · Devengado</span>
-          <span class="tag">Ranking Nacional</span>
-          <span class="tag">Histórico</span>
-          <span class="tag">UE</span>
-        </div>
-        <div class="card-footer">Abrir dashboard</div>
+        <div class="card-footer-btn">Abrir dashboard</div>
       </a>
     </div>
   </div>
@@ -409,14 +536,11 @@
         <img src="img/mpl.png" alt="MPL">
       </div>
       <div>
-        <div class="entity-name">Municipalidad Provincial de Lambayeque</div>
-        <div class="entity-sub">Presupuesto Municipal</div>
+        <div class="entity-name">MUNICIPALIDAD PROVINCIAL DE LAMBAYEQUE</div>
       </div>
       <div class="entity-line"></div>
     </div>
-
     <div class="cards-grid">
-
       <a class="card" href="https://jdrq.github.io/mpl-egresos/" target="_blank" rel="noopener">
         <div class="card-accent"></div>
         <div class="card-body">
@@ -425,17 +549,9 @@
           </div>
           <div class="card-tipo">Egresos · Gasto</div>
           <div class="card-title">Ejecución del Gasto Municipal</div>
-          <div class="card-desc">Seguimiento de certificaciones, compromisos y devengado. Desglose por genérica de gasto, función y proyectos de inversión.</div>
         </div>
-        <div class="card-tags">
-          <span class="tag">Certificación</span>
-          <span class="tag">Compromiso</span>
-          <span class="tag">Devengado</span>
-          <span class="tag">Proyectos</span>
-        </div>
-        <div class="card-footer">Abrir dashboard</div>
+        <div class="card-footer-btn">Abrir dashboard</div>
       </a>
-
       <a class="card" href="https://jdrq.github.io/mpl-ingresos/" target="_blank" rel="noopener">
         <div class="card-accent"></div>
         <div class="card-body">
@@ -444,17 +560,9 @@
           </div>
           <div class="card-tipo">Ingresos · Recaudación</div>
           <div class="card-title">Recaudación Municipal</div>
-          <div class="card-desc">Monitoreo de ingresos por rubro y fuente de financiamiento. Tendencias de captación, metas y avance por período.</div>
         </div>
-        <div class="card-tags">
-          <span class="tag">Recaudación</span>
-          <span class="tag">Fuente Financ.</span>
-          <span class="tag">Tendencias</span>
-          <span class="tag">Metas</span>
-        </div>
-        <div class="card-footer">Abrir dashboard</div>
+        <div class="card-footer-btn">Abrir dashboard</div>
       </a>
-
     </div>
   </div>
 
@@ -475,9 +583,7 @@
       </div>
       <div class="entity-line"></div>
     </div>
-
     <div class="cards-grid">
-
       <div class="card" style="opacity:.5; pointer-events:none;">
         <div class="card-accent"></div>
         <div class="card-body">
@@ -488,11 +594,10 @@
           </div>
           <div class="card-tipo">Egresos · Gasto</div>
           <div class="card-title">Ejecución del Gasto Municipal</div>
-          <div class="card-desc">Dashboard en construcción. Incluirá seguimiento de certificaciones, compromisos y devengado.</div>
+          <div class="card-desc">Dashboard en construcción.</div>
         </div>
-        <div class="card-footer" style="color:var(--texto-muted);">En construcción 🔒</div>
+        <div class="card-footer-btn" style="color:var(--texto-muted);">En construcción 🔒</div>
       </div>
-
       <div class="card" style="opacity:.5; pointer-events:none;">
         <div class="card-accent"></div>
         <div class="card-body">
@@ -503,41 +608,104 @@
           </div>
           <div class="card-tipo">Ingresos · Recaudación</div>
           <div class="card-title">Recaudación Municipal</div>
-          <div class="card-desc">Dashboard en construcción. Incluirá monitoreo de ingresos por rubro y fuente de financiamiento.</div>
+          <div class="card-desc">Dashboard en construcción.</div>
         </div>
-        <div class="card-footer" style="color:var(--texto-muted);">En construcción 🔒</div>
+        <div class="card-footer-btn" style="color:var(--texto-muted);">En construcción 🔒</div>
       </div>
-
-    </div>
-  </div>
-
-  <!-- NOTA MEF -->
-  <div class="nota-mef">
-    <div class="nota-mef-logo">
-      <img src="img/mef.jpg" alt="MEF">
-    </div>
-    <div class="nota-mef-text">
-      <strong>Fuente de datos:</strong> Consulta Amigable del Ministerio de Economía y Finanzas —
-      <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">apps5.mineco.gob.pe</a>.
-      Los dashboards se actualizan periódicamente con datos del SIAF. La información corresponde al período enero–julio 2026, salvo indicación contraria en cada dashboard.
     </div>
   </div>
 
 </main>
 
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-mef-logo">
+      <img src="img/mef.jpg" alt="MEF">
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-text">
+      <strong>Fuente de datos:</strong> Consulta Amigable del Ministerio de Economía y Finanzas —
+      <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx" target="_blank" rel="noopener">apps5.mineco.gob.pe</a>.
+      Los dashboards se actualizan periódicamente con datos del SIAF.
+      La información corresponde al período enero–julio 2026, salvo indicación contraria en cada dashboard.
+    </div>
+  </div>
+</footer>
+
 <script>
-  function actualizarFechaHora() {
-    const ahora = new Date();
-    const opcFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const opcHora  = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const fecha = ahora.toLocaleDateString('es-PE', opcFecha);
-    const hora  = ahora.toLocaleTimeString('es-PE', opcHora);
-    document.getElementById('fecha-hoy').textContent =
-      fecha.charAt(0).toUpperCase() + fecha.slice(1);
-    document.getElementById('hora-hoy').textContent = hora + ' hrs';
-  }
-  actualizarFechaHora();
-  setInterval(actualizarFechaHora, 1000);
+  /* ── FECHA ── */
+  (function() {
+    const opc = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const f = new Date().toLocaleDateString('es-PE', opc);
+    document.getElementById('fecha-hoy').textContent = f.charAt(0).toUpperCase() + f.slice(1);
+  })();
+
+  /* ── FADE CAROUSEL ── */
+  (function() {
+    const TOTAL     = 3;
+    const INTERVAL  = 5000;   // ms entre slides
+    const DURATION  = INTERVAL;
+
+    let current   = 0;
+    let timer     = null;
+    let progTimer = null;
+
+    const slides   = document.querySelectorAll('.slide');
+    const dots     = document.querySelectorAll('.dot');
+    const bar      = document.getElementById('progress-bar');
+    const btnPrev  = document.getElementById('btn-prev');
+    const btnNext  = document.getElementById('btn-next');
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+
+      current = (index + TOTAL) % TOTAL;
+
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      resetProgress();
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(next, INTERVAL);
+    }
+
+    function resetProgress() {
+      clearTimeout(progTimer);
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      // forzar reflow para que la transición reinicie
+      void bar.offsetWidth;
+      bar.style.transition = `width ${DURATION}ms linear`;
+      bar.style.width = '100%';
+    }
+
+    btnNext.addEventListener('click', () => { next(); startAuto(); });
+    btnPrev.addEventListener('click', () => { prev(); startAuto(); });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goTo(parseInt(dot.dataset.index));
+        startAuto();
+      });
+    });
+
+    // pausa al hover
+    const carousel = document.getElementById('carousel');
+    carousel.addEventListener('mouseenter', () => clearInterval(timer));
+    carousel.addEventListener('mouseleave', () => startAuto());
+
+    // arranque
+    resetProgress();
+    startAuto();
+  })();
 </script>
 
 </body>
